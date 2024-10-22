@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
 
-const API_KEY = 'AIzaSyCO5tOH7E8GEmeGs5NKM0dN-KUFBSJJFlk';
+const API_KEY = '';
 
 const Maps = () => {
   const [currentLocation, setCurrentLocation] = useState(null);
