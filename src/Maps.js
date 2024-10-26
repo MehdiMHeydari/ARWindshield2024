@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps';
 
-const API_KEY = '';
+const API_KEY = ''; // Insert your Google Maps API key here
 
 const Maps = () => {
   const [currentLocation, setCurrentLocation] = useState(null);
@@ -47,9 +47,10 @@ const Maps = () => {
       <Map
         style={{ flex: '1', height: '400px' }}
         center={currentLocation || { lat: 22.54992, lng: 0 }} // Default map center if location not available
-        zoom={20} // Set default zoom level, but this can be changed by the user
-        gestureHandling={'greedy'} // Allow users to zoom and pan freely
-        disableDefaultUI={false} // Enable default UI so the user can zoom using the controls
+        zoom={22} // Set default zoom level
+        zoomControl={true} // Show the zoom buttons on the map
+        gestureHandling={'cooperative'} // Allow gestures to control the map, but don't block page zoom
+        disableDefaultUI={false} // Keep default UI elements like zoom buttons
       >
         {currentLocation && (
           <Marker
