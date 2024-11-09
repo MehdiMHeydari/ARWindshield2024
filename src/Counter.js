@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Speedometer from './Speedometer';
 import Battery from './Battery';
+import Thermo from './Thermo';
 import ReconnectingWebSocket from 'reconnecting-websocket';
 
 const Counter = () => {
@@ -15,7 +16,7 @@ const Counter = () => {
 
     ws.onmessage = (message) => {
       const data = JSON.parse(message.data);
-      setCounter(data.counter); // Assume data is in { counter: value } format
+      setCounter(data.counter); // Ensure `data.counter` matches your data format
     };
 
     ws.onerror = (error) => {
@@ -30,8 +31,9 @@ const Counter = () => {
   return (
     <div>
       <h2>Counter Value: {counter}</h2>
-      <Speedometer counter={counter} />
-      <Battery counter={counter} />
+      <Thermo counter={counter}  maxValue={100}/>
+      <Speedometer counter={counter} maxValue={100}/>
+      <Battery counter={counter} maxValue={100}/>
     </div>
   );
 };
