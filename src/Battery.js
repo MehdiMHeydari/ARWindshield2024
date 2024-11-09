@@ -5,13 +5,13 @@ const BatteryVisualization = ({ counter }) => {
   const ref = useRef();
 
   useEffect(() => {
-    const margin = { top: 40, right: 20, bottom: 40, left: 50 }; // increased left margin for the notch
-    const totalWidth = 260; // increased total width to prevent cutting off
-    const totalHeight = 100;
-    const width = 200; // width of the battery
-    const height = 50; // height of the battery
+    const margin = { top: 20, right: 20, bottom: 40, left: 50 }; // Adjusted top margin for spacing
+    const totalWidth = 260;
+    const totalHeight = 140; // Increased total height to create space for text and avoid overlap
+    const width = 200;
+    const height = 50;
     const notchWidth = 10;
-    const notchHeight = 30; // increased for a better visual effect
+    const notchHeight = 30;
 
     // Clear SVG before redraw
     d3.select(ref.current).selectAll("*").remove();
@@ -21,44 +21,45 @@ const BatteryVisualization = ({ counter }) => {
       .attr("width", totalWidth)
       .attr("height", totalHeight);
 
-    // Determine fill color based on the counter value
     let fillColor;
     if (counter < 25) fillColor = "red";
     else if (counter < 50) fillColor = "orange";
     else fillColor = "limegreen";
 
-    // Draw the notch on the left side, vertically centered
+    // Draw the notch on the left side, vertically centered without moving it down
     svg.append("rect")
-      .attr("x", margin.left - notchWidth) // Shift notch to the left of the battery
-      .attr("y", (totalHeight - notchHeight) / 2) // Vertically center the notch
+      .attr("x", margin.left - notchWidth)
+      .attr("y", (totalHeight - notchHeight) / 2 + 20) // Adjusted to align with the battery
       .attr("height", notchHeight)
       .attr("width", notchWidth)
       .attr("fill", fillColor);
 
-    // Draw the "battery" container, accounting for the notch
+    // Draw the "battery" container
     svg.append("rect")
       .attr("x", margin.left)
-      .attr("y", (totalHeight - height) / 2) // Vertically center the battery
+      .attr("y", (totalHeight - height) / 2 + 20) // Added offset to push battery down
       .attr("height", height)
       .attr("width", width)
       .attr("fill", "none")
       .attr("stroke", "black");
 
-    // Draw the "fill" of the battery, considering the new margins and notch
+    // Draw the "fill" of the battery
     const fillWidth = (counter / 100) * width;
     svg.append("rect")
       .attr("x", margin.left)
-      .attr("y", (totalHeight - height) / 2) // Vertically center the battery fill
+      .attr("y", (totalHeight - height) / 2 + 20) // Added offset to push fill down
       .attr("height", height)
       .attr("width", fillWidth)
       .attr("fill", fillColor);
 
-    // Add text for battery value above the battery
-    svg.append("text")
-      .attr("x", totalWidth / 2) // Center the text horizontally
-      .attr("y", margin.top / 2) // Position the text above the battery
-      .attr("text-anchor", "middle")
-      .attr("dominant-baseline", "middle")
+    // Add percentage text above the battery
+    svg.append('text')
+      .attr('class', 'battery-percentage')
+      .attr('x', totalWidth / 2)
+      .attr('y', margin.top) // Positioned with enough space above the battery
+      .attr('text-anchor', 'middle')
+      .attr('dominant-baseline', 'middle')
+      .attr('fill', 'white') // Set text color to white
       .text(`${counter}%`);
 
   }, [counter]);
