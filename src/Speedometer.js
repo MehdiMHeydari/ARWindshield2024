@@ -4,12 +4,13 @@ import ReactSpeedometer from 'react-d3-speedometer';
 const Speedometer = ({ counter }) => {
   return (
     <ReactSpeedometer
-      maxValue={100}
+      maxValue={60}
       value={counter}
-      needleColor="red"
+      needleColor="white"
       startColor="green"
-      segments={10}
-      endColor="blue"
+      segments={8}
+      endColor="red"
+      textColor="white" // Set text color to white
     />
   );
 };

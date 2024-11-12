@@ -34,6 +34,11 @@
   margin-bottom: 10px; /* Add space below the text */
 }
 
+.speedometer-text {
+  fill: white; /* Text color for the speedometer */
+}
+
+
 .battery-percentage {
   margin-bottom: 10px; /* Add space between the percentage text and the battery */
   color: white; /* Text color for the battery */
