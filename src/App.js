@@ -37,7 +37,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div className="app-content">
-          <Counter counter={counter} />
+          {/* <Counter counter={counter} /> */}
           <Thermo counter={counter} maxValue={100} />
           <Speedometer counter={counter} maxValue={100} />
           <Battery counter={counter} maxValue={100} />
