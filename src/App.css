@@ -45,18 +45,6 @@
 }
 
 
-.daq-connected {
-  width: 300px; /* Adjust as needed */
-  height: 300px; /* Ensure width and height are the same */
-  border-radius: 50%; /* Makes it a circle */
-  background-color: lightgreen; /* Adjust color as needed */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem; /* Adjust font size as needed */
-  color: black; /* Text color */
-}
-
 
 /* Add consistent box sizing for all child components */
 .app-content > div {

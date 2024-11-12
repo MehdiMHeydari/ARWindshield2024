@@ -26,16 +26,18 @@ const DaqConnection = () => {
 
     <div
       style = {{
-        width: '10px',
-        height: '140px',
+        width: '200px',           
+        height: '200px',          
+        maxWidth: '200px',        
+        maxHeight: '200px',       
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        fontSize: '16px',
+        fontSize: '18px',
         fontWeight: 'bold',
         backgroundColor: isConnected ? '#d4fcd4' : '#fcd4d4',
         color: isConnected ? 'green' : 'red',
-        border: `2px solid ${isConnected ? 'green' : 'red'}`,
+        border: `4px solid ${isConnected ? 'green' : 'red'}`,
         borderRadius: '50%',
         textAlign: 'center',
         margin: '10px',
