@@ -6,6 +6,7 @@ import Battery from './Battery';
 import Thermo from './Thermo';
 import DaqConnection from './DaqConnection';
 import ReconnectingWebSocket from 'reconnecting-websocket';
+import Temperature from './Temperature';
 import './App.css';
 
 
@@ -38,6 +39,7 @@ function App() {
       <header className="App-header">
         <div className="app-content">
           {/* <Counter counter={counter} /> */}
+          <Temperature/>
           <Thermo counter={counter} maxValue={100} />
           <Speedometer counter={counter} maxValue={100} />
           <Battery counter={counter} maxValue={100} />
