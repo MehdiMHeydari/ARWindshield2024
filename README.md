@@ -1,70 +1,127 @@
-# Getting Started with Create React App
+# AR Windshield | Spring 2024
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Team Members
+Mehdi Heydari & Amelia Zhang
 
-## Available Scripts
+## Summary
+The AR Windshield is a comprehensive web-based platform designed to display real-time vehicle information during competitive events. This system provides critical data visualization for both drivers and team members, enabling informed decision-making during races through an intuitive digital interface.
 
-In the project directory, you can run:
+## System Description
+The platform has undergone significant enhancements in Spring 2024, with a complete frontend redesign and expanded functionality. Key features now include:
 
-### `npm start`
+- Real-time GPS tracking for precise vehicle positioning
+- Live temperature monitoring with dynamic visualization
+- Comprehensive DAQ connection implementation
+- Integrated time tracking system
+- Enhanced data visualization components including speedometer, battery status, and thermal monitoring
+- Planned integration framework for LiveTiming and Historical dashboards
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The system utilizes ReactJS for the frontend, incorporating D3.js for complex visualizations and WebSocket connections for real-time data updates. The interface has been optimized for both clarity and performance, ensuring critical information is readily accessible to drivers and team members.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Key Components
+- **Dynamic Dashboard Interface**: Completely redesigned frontend with improved visual hierarchy and component organization
+- **Real-time Location Tracking**: Integrated GPS monitoring system using the Google Maps API
+- **Environmental Monitoring**: New temperature tracking and visualization system
+- **Data Acquisition Interface**: Fully implemented DAQ connection for reliable sensor data collection
+- **Time Management System**: Added precise timing functionality for race management
 
-### `npm test`
+## How To Use
+1. Clone the repository
+2. Install dependencies:
+```bash
+npm install
+```
+3. Start the systems in the following order:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+a. For AR Windshield:
+```bash
+cd ARWindshield
+node server.js
+```
 
-### `npm run build`
+b. For FakeDAQ:
+```bash
+cd FakeDAQ/server
+node server.js
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+c. Then in a new terminal:
+```bash
+cd ARWindshield
+npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Application Architecture
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Frontend
+The frontend has been completely revamped this semester with a focus on modularity and real-time performance:
 
-### `npm run eject`
+- **App.js**: Core application container managing component hierarchy and data flow
+- **Maps.js**: Handles GPS tracking and location visualization
+- **Temperature.js**: New component for environmental data monitoring
+- **Battery.js**: Enhanced battery visualization with D3.js
+- **Counter.js**: Manages WebSocket connections and real-time data updates
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Backend
+The backend system has been strengthened with:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Robust WebSocket server implementation for real-time data transmission
+- Enhanced data processing capabilities for sensor integration
+- Planned connectivity framework for dashboard integration
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Challenges and Solutions
+This semester's major challenges included:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. **GPS Integration**: Implemented precise location tracking while managing battery efficiency
+2. **Frontend Redesign**: Complete overhaul while maintaining system stability
+3. **DAQ Connection**: Successfully completed full implementation with robust error handling
+4. **Real-time Data Management**: Optimized WebSocket connections for improved performance
 
-## Learn More
+## Future Work
+Upcoming development priorities include:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Complete integration with LiveTiming and Historical dashboards
+2. Enhanced data visualization options
+3. Optimization of GPS tracking battery usage
+4. Additional sensor integration capabilities
+5. Expanded real-time analysis tools
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Recent Updates (Spring 2024)
+- Complete frontend redesign for improved user experience
+- Added GPS tracking functionality
+- Implemented comprehensive temperature monitoring
+- Completed DAQ connection implementation
+- Developed integration framework for dashboard systems
+- Enhanced real-time data visualization components
 
-### Code Splitting
+## Testing
+The system undergoes rigorous testing to ensure reliability:
+- Unit testing of individual components
+- Integration testing of WebSocket connections
+- Performance testing under various data loads
+- GPS accuracy verification
+- Real-time update latency testing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Performance Considerations
+- Optimized WebSocket connections for minimal latency
+- Efficient data processing for real-time updates
+- Battery-conscious GPS tracking implementation
+- Streamlined component rendering
 
-### Analyzing the Bundle Size
+## Dependencies
+- React.js
+- D3.js
+- WebSocket
+- Google Maps API
+- Node.js
+- Express.js
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Contributing
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Contact
+mmh287@cornell.edu for more information
