@@ -1,4 +1,4 @@
-# AR Windshield | Spring 2024
+# AR Windshield | Fall 2024
 
 ## Team Members
 Mehdi Heydari & Amelia Zhang
