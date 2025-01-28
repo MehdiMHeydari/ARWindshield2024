@@ -40,7 +40,6 @@ function App() {
         <div className="app-content">
           {/* <Counter counter={counter} /> */}
           <Temperature/>
-          <Thermo counter={counter} maxValue={100} />
           <Speedometer counter={counter} maxValue={100} />
           <Battery counter={counter} maxValue={100} />
           <DaqConnection />
