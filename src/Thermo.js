@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import Thermometer from 'react-thermometer-component';
 import * as d3 from 'd3';
 
 const Thermo = ({ counter }) => {
@@ -60,7 +61,16 @@ const Thermo = ({ counter }) => {
 
   }, [counter]);
 
-  return <svg ref={ref}></svg>;
+  return (
+    <Thermometer
+      theme="light"
+      value={counter}
+      max="100"
+      format="°C"
+      size="normal"
+      height="300"
+    />
+  );
 };
 
 export default Thermo;
