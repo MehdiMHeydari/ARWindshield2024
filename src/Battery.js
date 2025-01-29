@@ -8,7 +8,7 @@ const BatteryVisualization = ({ counter }) => {
     const margin = { top: 20, right: 20, bottom: 40, left: 50 };
     const totalWidth = 260;
     const totalHeight = 140; // Adjusted total height
-    const width = 200;
+    const width = 190;
     const height = 50;
     const notchWidth = 10;
     const notchHeight = 30;
@@ -32,7 +32,9 @@ const BatteryVisualization = ({ counter }) => {
       .attr("y", (totalHeight - notchHeight) / 2 + 20)
       .attr("height", notchHeight)
       .attr("width", notchWidth)
-      .attr("fill", fillColor);
+      .attr("fill", fillColor)
+      .attr("stroke", "white")
+      .attr("stroke-width", 2);
 
     // Draw the "battery" container with white outline
     svg.append("rect")
@@ -41,25 +43,27 @@ const BatteryVisualization = ({ counter }) => {
       .attr("height", height)
       .attr("width", width)
       .attr("fill", "none")
-      .attr("stroke", "white"); // Changed to white outline
+      .attr("stroke", "white")
+      .attr("stroke-width", 2);
 
     // Draw the "fill" of the battery
-    const fillWidth = (counter / 100) * width;
+    const fillWidth = Math.max(0, Math.min((counter / 100) * width, width)); 
     svg.append("rect")
-      .attr("x", margin.left)
-      .attr("y", (totalHeight - height) / 2 + 20)
+      .attr("x", margin.left) 
+      .attr("y", (totalHeight - height) / 2 + 20) 
       .attr("height", height)
-      .attr("width", fillWidth)
+      .attr("width", fillWidth) 
       .attr("fill", fillColor);
 
     // Add percentage text above the battery
     svg.append('text')
       .attr('class', 'battery-percentage')
-      .attr('x', totalWidth / 2)
-      .attr('y', margin.top)
+      .attr('x', totalWidth / 2 + 10)
+      .attr('y', (totalHeight - height) / 2 - 6)
       .attr('text-anchor', 'middle')
       .attr('dominant-baseline', 'middle')
       .attr('fill', 'white') // Set text color to white
+      .attr('font-size', '22px') 
       .text(`${counter}%`);
 
   }, [counter]);
