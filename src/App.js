@@ -7,6 +7,7 @@ import Thermo from './Thermo';
 import DaqConnection from './DaqConnection';
 import ReconnectingWebSocket from 'reconnecting-websocket';
 import Temperature from './Temperature';
+import Stopwatch from './Stopwatch';
 import './App.css';
 
 
@@ -15,6 +16,7 @@ function App() {
 
   useEffect(() => {
     const ws = new ReconnectingWebSocket('ws://localhost:3000');
+    
 
     ws.onopen = () => {
       console.log('Connected to the WebSocket server');
@@ -40,9 +42,11 @@ function App() {
         <div className="app-content">
           {/* <Counter counter={counter} /> */}
           <Temperature/>
+          <Thermo counter={counter} maxValue={100}></Thermo>
           <Speedometer counter={counter} maxValue={100} />
           <Battery counter={counter} maxValue={100} />
           <DaqConnection />
+          <Stopwatch />
           <Maps />
         </div>
       </header>
