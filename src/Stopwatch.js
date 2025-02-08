@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import './Stopwatch.css';
 
 function Stopwatch() {
     const [time, setTime] = useState(0);
@@ -69,23 +69,23 @@ function Stopwatch() {
         const totalSeconds = Math.floor(ms / 1000);
         const minutes = Math.floor(totalSeconds / 60);
         const seconds = totalSeconds % 60;
-        const centiseconds = Math.round(ms % 1000 / 10);
+        const centiseconds = Math.floor(ms % 1000 / 10);
         return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${centiseconds.toString().padStart(2, '0')}`;
     };
   
     return (
-      <div>
+      <div style={{border: "2px solid black", maxWidth: "300px", height:"350px"}}>
         <div>
           <h2>{formatTime(time)}</h2>
         </div>
-        <button onClick={isRunning ? handleStop : handleStart}>{isRunning ? "Stop" : "Start"}</button>
-        <button onClick={handleReset}>Reset</button>
-        <button onClick={handleLap} disabled={!isRunning}>Lap</button>
-        <ul style={{ listStyleType: "none"}}>
+        <button className='button-9' onClick={isRunning ? handleStop : handleStart}>{isRunning ? "Stop" : "Start"} Q</button>
+        <button className='button-9' onClick={handleReset}>Reset W</button>
+        <button className='button-9' onClick={handleLap} disabled={!isRunning}><div>Lap</div><div>E</div></button>
+        <li style={{ listStyleType: "none"}}>
           {laps.slice(0,3).map((lap, index) => (
             <li key={index}><pre>{"Lap " + (laps.length - index) + "\t" + formatTime(lap - (laps[index + 1] || 0))}</pre></li>
           ))}
-        </ul>
+        </li>
       </div>
     );
   }

@@ -64,7 +64,7 @@ const BatteryVisualization = ({ counter }) => {
 
   }, [counter]);
 
-  return <svg ref={ref}></svg>;
+  return <svg style={{marginLeft: "60px", marginTop: "60px"}} ref={ref}></svg>;
 };
 
 export default BatteryVisualization;

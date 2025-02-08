@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import Thermometer from 'react-thermometer-component';
+import Thermometer from './react-thermometer-component/index.js';
 import * as d3 from 'd3';
 import { AlignCenter } from 'lucide-react';
 
@@ -21,8 +21,7 @@ const Thermo = ({ counter }) => {
     const svg = d3.select(ref.current)
       .attr('width', width)
       .attr('height', height);
-
-    svg.append('text')
+    svg.append('text')  
       .attr('class', 'thermo-text')
       .attr('x', width / 2)
       .attr('y', topMargin - 20)
@@ -39,13 +38,15 @@ const Thermo = ({ counter }) => {
 
   return (
     <div style={{placeItems: "center"}}>
-      <svg ref={ref}></svg>
+      <div>
+        <h3>
+          {counter}&deg;
+        </h3>
+      </div>
       <Thermometer 
-      showCurrentValue={false}
         theme="light"
         value={counter}
         max="100"
-        format="°C"
         size="normal"
         height="300"
       />
