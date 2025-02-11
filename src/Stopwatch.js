@@ -78,9 +78,9 @@ function Stopwatch() {
         <div>
           <h2>{formatTime(time)}</h2>
         </div>
-        <button className='button-9' onClick={isRunning ? handleStop : handleStart}>{isRunning ? "Stop" : "Start"} Q</button>
-        <button className='button-9' onClick={handleReset}>Reset W</button>
-        <button className='button-9' onClick={handleLap} disabled={!isRunning}><div>Lap</div><div>E</div></button>
+        <button className='button-css' onClick={isRunning ? handleStop : handleStart}>{isRunning ? "Stop" : "Start"} Q</button>
+        <button className='button-css' onClick={handleReset}>Reset W</button>
+        <button className='button-css' onClick={handleLap} disabled={!isRunning}><div>Lap</div><div>E</div></button>
         <li style={{ listStyleType: "none"}}>
           {laps.slice(0,3).map((lap, index) => (
             <li key={index}><pre>{"Lap " + (laps.length - index) + "\t" + formatTime(lap - (laps[index + 1] || 0))}</pre></li>

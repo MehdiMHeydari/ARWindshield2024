@@ -42,14 +42,18 @@ const Maps = () => {
     };
   }, []);
 
+
   return (
     <APIProvider apiKey={API_KEY}>
       <Map
         style={{ flex: '1', height: '400px' }}
-        center={currentLocation || { lat: 22.54992, lng: 0 }} // Default map center if location not available
-        zoom={18} // Set default zoom level, but this can be changed by the user
+        center={{ lat: 39.794869, lng: -86.234521 }} // Default map center if location not available
+        zoom={15} // Set default zoom level, but this can be changed by the user
         gestureHandling={'greedy'} // Allow users to zoom and pan freely
         disableDefaultUI={false} // Enable default UI so the user can zoom using the controls
+        onLoad={(map) => {
+          map.setHeading(50); // Rotates the map
+        }}
       >
         {currentLocation && (
           <Marker
