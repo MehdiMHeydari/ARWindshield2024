@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { APIProvider, Map, Marker } from "@vis.gl/react-google-maps";
 import TrackOverlay from "./Indianapolis_Oval.png";
 
-const API_KEY = "AIzaSyAUh-VvgcKpdw4HhafonT_u2Yz1JWybA5Q";
+const API_KEY = "";
 
 const Maps = () => {
   const [currentLocation, setCurrentLocation] = useState(null);
