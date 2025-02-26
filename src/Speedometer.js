@@ -6,9 +6,10 @@ const Speedometer = ({ counter }) => {
   const cappedCounter = Math.min(Math.round(counter/2), 60);
 
   return (
-    <div style={{marginTop: "30px"}}>
+    <div style={{marginTop: "30px", minWidth: "300px"}}>
       <ReactSpeedometer
         maxValue={60}
+        height={160}
         value={cappedCounter}
         needleColor="white"
         startColor="green"

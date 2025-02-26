@@ -43,7 +43,11 @@ function App() {
           {/* <Counter counter={counter} /> */}
           <Temperature/>
           <Thermo counter={counter} maxValue={100}></Thermo>
-          <Speedometer counter={counter} maxValue={100} />
+          <div style={{minWidth: "300px"}}>
+            <Speedometer counter={counter} maxValue={100} />
+            <Counter counter={counter} />
+            <h6 style={{marginTop: "0px", marginBottom: "10px", lineHeight: "6px"}}>mph</h6>
+          </div>
           <Battery counter={counter} maxValue={100} />
           <DaqConnection />
           <Stopwatch />
