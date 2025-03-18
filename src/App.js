@@ -1,25 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import Counter from './Counter';
-import Maps from './Maps';
-import Speedometer from './Speedometer';
-import Battery from './Battery';
-import Thermo from './Thermo';
-import DaqConnection from './DaqConnection';
-import ReconnectingWebSocket from 'reconnecting-websocket';
-import Temperature from './Temperature';
-import Stopwatch from './Stopwatch';
-import './App.css';
-
+import React, { useState, useEffect } from "react";
+import Counter from "./Counter";
+import Maps from "./Maps";
+import Speedometer from "./Speedometer";
+import Battery from "./Battery";
+import Thermo from "./Thermo";
+import DaqConnection from "./DaqConnection";
+import ReconnectingWebSocket from "reconnecting-websocket";
+import Temperature from "./Temperature";
+import Stopwatch from "./Stopwatch";
+import "./App.css";
 
 function App() {
   const [counter, setCounter] = useState(0);
 
   useEffect(() => {
-    const ws = new ReconnectingWebSocket('ws://localhost:3000');
-    
+    const ws = new ReconnectingWebSocket("ws://localhost:3000");
 
     ws.onopen = () => {
-      console.log('Connected to the WebSocket server');
+      console.log("Connected to the WebSocket server");
     };
 
     ws.onmessage = (message) => {
@@ -28,7 +26,7 @@ function App() {
     };
 
     ws.onerror = (error) => {
-      console.error('WebSocket error:', error);
+      console.error("WebSocket error:", error);
     };
 
     return () => {
@@ -41,15 +39,23 @@ function App() {
       <header className="App-header">
         <div className="app-content">
           {/* <Counter counter={counter} /> */}
-          <Temperature/>
-          <Thermo counter={counter} maxValue={100}></Thermo>
-          <div style={{minWidth: "300px"}}>
-            <Speedometer counter={counter} maxValue={100} />
-            <Counter counter={counter} />
-            <h6 style={{marginTop: "0px", marginBottom: "10px", lineHeight: "6px"}}>mph</h6>
-          </div>
+          <Temperature />
           <Battery counter={counter} maxValue={100} />
           <DaqConnection />
+          <Thermo counter={counter} maxValue={100}></Thermo>
+          <div style={{ minWidth: "300px" }}>
+            <Speedometer counter={counter} maxValue={100} />
+            <Counter counter={counter} />
+            <h6
+              style={{
+                marginTop: "0px",
+                marginBottom: "150px",
+                lineHeight: "2px",
+              }}
+            >
+              mph
+            </h6>
+          </div>
           <Stopwatch />
           <Maps />
         </div>

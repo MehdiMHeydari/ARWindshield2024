@@ -104,9 +104,6 @@ const TemperatureWidget = () => {
     }
   }
 
-  const test = () => {
-    return <p>wow</p>
-  }
 
   return (
     <div className="temperature-visualization">
@@ -144,7 +141,7 @@ const TemperatureWidget = () => {
                 textAnchor="middle"
                 fill="white"
               >
-                {test()}
+                {}
               </text>
               <image src={sun} alt="Sun" />
               <WeatherIcon />

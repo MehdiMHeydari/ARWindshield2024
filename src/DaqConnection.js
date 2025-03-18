@@ -1,11 +1,11 @@
-import { circle } from 'leaflet';
-import React, { useState, useRef, useEffect } from 'react';
-import ReconnectingWebSocket from 'reconnecting-websocket';
+import { circle } from "leaflet";
+import React, { useState, useRef, useEffect } from "react";
+import ReconnectingWebSocket from "reconnecting-websocket";
 
 const DaqConnection = () => {
   const [isConnected, setIsConnected] = useState(false);
   useEffect(() => {
-    const ws = new ReconnectingWebSocket('ws://localhost:3000'); 
+    const ws = new ReconnectingWebSocket("ws://localhost:3000");
 
     ws.onopen = () => {
       setIsConnected(true);
@@ -23,30 +23,28 @@ const DaqConnection = () => {
   }, []);
 
   return (
-
     <div
-      style = {{
-        width: '200px',           
-        height: '200px',          
-        maxWidth: '200px',        
-        maxHeight: '200px',       
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: '18px',
-        fontWeight: 'bold',
-        backgroundColor: isConnected ? '#d4fcd4' : '#fcd4d4',
-        color: isConnected ? 'green' : 'red',
-        border: `4px solid ${isConnected ? 'green' : 'red'}`,
-        borderRadius: '50%',
-        textAlign: 'center',
-        margin: '10px',
+      style={{
+        width: "200px",
+        height: "200px",
+        maxWidth: "200px",
+        maxHeight: "200px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: "16px",
+        fontWeight: "bold",
+        backgroundColor: isConnected ? "#d4fcd4" : "#fcd4d4",
+        color: isConnected ? "green" : "red",
+        border: `4px solid ${isConnected ? "green" : "red"}`,
+        borderRadius: "50%",
+        textAlign: "center",
+        margin: "10px",
       }}
     >
-      DAQ {isConnected ? 'Connected' : 'Disconnected'}
+      DAQ {isConnected ? "Connected" : "Disconnected"}
     </div>
   );
-  
 };
 
 export default DaqConnection;

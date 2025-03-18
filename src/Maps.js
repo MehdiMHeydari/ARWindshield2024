@@ -40,7 +40,8 @@ const Maps = () => {
     };
   }, []);
 
-  const mapStyles = [  //removes labels from map
+  const mapStyles = [
+    //removes labels from map
     {
       featureType: "all",
       elementType: "labels",
@@ -56,42 +57,48 @@ const Maps = () => {
       elementType: "labels",
       stylers: [{ visibility: "off" }],
     },
-  
   ];
   return (
-    <div style={{ 
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      height: "100vh",  
-      width: "100%",
-      position: "relative",
-      marginTop: "-300px", // Moves the widget UP
-      marginLeft: "200px", // Moves the widget RIGHT
-      transform: "rotate(270deg)", 
-      transformOrigin: "50% 50%",
-      }}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        maxHeight: "500px",
+        minWidth: "270px",
+        position: "relative",
+        marginTop: "-20px", // Moves the widget UP
+        marginLeft: "150px", // Moves the widget RIGHT
+        transform: "rotate(270deg)",
+        transformOrigin: "50% 50%",
+        overflow: "hidden",
+        boxSizing: "border-box",
+      }}
+    >
       <APIProvider apiKey={API_KEY}>
         <Map
           style={{ width: "100%", height: "80vh" }}
           center={{ lat: 39.795, lng: -86.235 }}
           zoom={15.2}
-         // mapTypeId="satellite"
+          // mapTypeId="satellite"
           gestureHandling={"greedy"}
           disableDefaultUI={false}
-          options={{ styles: mapStyles ,
+          options={{
+            styles: mapStyles,
             mapTypeControl: false,
             streetViewControl: false,
-            zoomControl: false, 
-            fullscreenControl: false, }} 
-         
+            zoomControl: false,
+            fullscreenControl: false,
+          }}
           onLoad={(map) => {
             setTimeout(() => {
               map.setHeading(90);
             }, 1000);
           }}
         >
-          {currentLocation && <Marker position={currentLocation} title="Current Location" />}
+          {currentLocation && (
+            <Marker position={currentLocation} title="Current Location" />
+          )}
         </Map>
       </APIProvider>
 
@@ -100,13 +107,13 @@ const Maps = () => {
         alt="Track Overlay"
         style={{
           position: "absolute",
-          top: "50%",  
-          left: "50%", 
-          transform: "translate(-50%, -47%)", 
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -47%)",
           height: "auto",
           maxWidth: "260px",
           opacity: 0.7,
-          pointerEvents: "none",  
+          pointerEvents: "none",
         }}
       />
     </div>
