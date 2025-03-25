@@ -8,7 +8,7 @@ const BatteryVisualization = ({ volt }) => {
   const ref = useRef();
 
   // <div style={{ marginLeft: "40px", marginTop: "60px", marginRight: "40px" }}><svg ref={ref}></svg></div>
-  const circleScale = 0.8;
+  const circleScale = 0.9;
   return (
     <div style={{ marginTop: "33px" }}>
       <CircularProgressbarWithChildren
