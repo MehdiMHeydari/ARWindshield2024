@@ -9,17 +9,6 @@ import { ReactComponent as Snow } from "./weather_icons/snowflake.svg";
 import { ReactComponent as Thunder } from "./weather_icons/thunderstorm.svg";
 import { ReactComponent as Fog } from "./weather_icons/fog.svg";
 import { ReactComponent as Hail } from "./weather_icons/cloud-hail-mixed.svg";
-import React, { useState, useEffect } from "react";
-import sun from "./weather_icons/sun.svg";
-import { ReactComponent as Sun } from "./weather_icons/sun.svg";
-import { ReactComponent as Cloudy } from "./weather_icons/cloud-sun.svg";
-import { ReactComponent as Rain } from "./weather_icons/cloud-showers-heavy.svg";
-import { ReactComponent as HeavyRain } from "./weather_icons/cloud-showers-water.svg";
-import { ReactComponent as Drizzle } from "./weather_icons/cloud-drizzle.svg";
-import { ReactComponent as Snow } from "./weather_icons/snowflake.svg";
-import { ReactComponent as Thunder } from "./weather_icons/thunderstorm.svg";
-import { ReactComponent as Fog } from "./weather_icons/fog.svg";
-import { ReactComponent as Hail } from "./weather_icons/cloud-hail-mixed.svg";
 
 const TemperatureWidget = () => {
   const [temperature, setTemperature] = useState(null);
@@ -144,57 +133,56 @@ const TemperatureWidget = () => {
         return "Err";
     }
   };
+
+  return (
+    <div className="temperature-visualization">
+      {error ? (
+        <p style={{ color: "red" }}>{error}</p>
+      ) : (
+        <div>
+          {/* Current Time Display */}
+          {/* <h2 style={{ color: "white", marginBottom: "20px" }}>
+              {currentTime}
+            </h2> */}
+
+          {/* Temperature Visualization */}
+          {temperature !== null ? (
+            <svg width="200" height="200">
+              <circle
+                cx="100"
+                cy="100"
+                r="80"
+                fill="none"
+                stroke="lightblue"
+                strokeWidth="15"
+              />
+              <text
+                x="100"
+                y="135"
+                fontSize="1.7rem"
+                textAnchor="middle"
+                fill="white"
+              >
+                {`${temperature}°F`}
+              </text>
+              <text
+                x="100"
+                y="110"
+                fontSize="2rem"
+                textAnchor="middle"
+                fill="white"
+              >
+                {}
+              </text>
+              <image src={sun} alt="Sun" />
+              <WeatherIcon />
+            </svg>
+          ) : (
+            <p style={{ color: "white" }}>Loading temperature...</p>
+          )}
+        </div>
+      )}
+    </div>
+  );
 };
-
-return (
-  <div className="temperature-visualization">
-    {error ? (
-      <p style={{ color: "red" }}>{error}</p>
-    ) : (
-      <div>
-        {/* Current Time Display */}
-        {/* <h2 style={{ color: "white", marginBottom: "20px" }}>
-            {currentTime}
-          </h2> */}
-
-        {/* Temperature Visualization */}
-        {temperature !== null ? (
-          <svg width="200" height="200">
-            <circle
-              cx="100"
-              cy="100"
-              r="80"
-              fill="none"
-              stroke="lightblue"
-              strokeWidth="15"
-            />
-            <text
-              x="100"
-              y="135"
-              fontSize="1.7rem"
-              textAnchor="middle"
-              fill="white"
-            >
-              {`${temperature}°F`}
-            </text>
-            <text
-              x="100"
-              y="110"
-              fontSize="2rem"
-              textAnchor="middle"
-              fill="white"
-            >
-              {}
-            </text>
-            <image src={sun} alt="Sun" />
-            <WeatherIcon />
-          </svg>
-        ) : (
-          <p style={{ color: "white" }}>Loading temperature...</p>
-        )}
-      </div>
-    )}
-  </div>
-);
-
 export default TemperatureWidget;
