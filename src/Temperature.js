@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import sun from './weather_icons/sun.svg';
-import {ReactComponent as Sun} from './weather_icons/sun.svg';
-import {ReactComponent as Cloudy} from './weather_icons/cloud-sun.svg';
-import {ReactComponent as Rain} from './weather_icons/cloud-showers-heavy.svg';
-import {ReactComponent as HeavyRain} from './weather_icons/cloud-showers-water.svg';
-import {ReactComponent as Drizzle} from './weather_icons/cloud-drizzle.svg';
-import {ReactComponent as Snow} from './weather_icons/snowflake.svg';
-import {ReactComponent as Thunder} from './weather_icons/thunderstorm.svg';
-import {ReactComponent as Fog} from './weather_icons/fog.svg';
-import {ReactComponent as Hail} from './weather_icons/cloud-hail-mixed.svg';
+import React, { useState, useEffect } from "react";
+import sun from "./weather_icons/sun.svg";
+import { ReactComponent as Sun } from "./weather_icons/sun.svg";
+import { ReactComponent as Cloudy } from "./weather_icons/cloud-sun.svg";
+import { ReactComponent as Rain } from "./weather_icons/cloud-showers-heavy.svg";
+import { ReactComponent as HeavyRain } from "./weather_icons/cloud-showers-water.svg";
+import { ReactComponent as Drizzle } from "./weather_icons/cloud-drizzle.svg";
+import { ReactComponent as Snow } from "./weather_icons/snowflake.svg";
+import { ReactComponent as Thunder } from "./weather_icons/thunderstorm.svg";
+import { ReactComponent as Fog } from "./weather_icons/fog.svg";
+import { ReactComponent as Hail } from "./weather_icons/cloud-hail-mixed.svg";
 
 const TemperatureWidget = () => {
   const [temperature, setTemperature] = useState(null);
   const [weatherCode, setWeatherCode] = useState(null);
   const [error, setError] = useState(null);
-  const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString());
+  const [currentTime, setCurrentTime] = useState(
+    new Date().toLocaleTimeString()
+  );
 
   // Update time every second
   useEffect(() => {
@@ -25,95 +27,94 @@ const TemperatureWidget = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // Fetch temperature data
+  // Fetch temperature data at Indianapolis Speedway
   useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = {latitude: 39.794869, longitude: -86.234521};//position.coords
+    const { latitude, longitude } = {
+      // Track location
+      latitude: 39.794869,
+      longitude: -86.234521,
+    };
 
-          const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code&current_weather=true&temperature_unit=fahrenheit`;
+    const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code&current_weather=true&temperature_unit=fahrenheit`;
 
-          fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-              if (data.current_weather && data.current_weather.temperature !== undefined) {
-                setTemperature(data.current_weather.temperature);
-                
-              } else {
-                setError('Unable to fetch temperature data');
-              }
-              
-              //if (data.current && data.current_weather.weather_code !== undefined) {
-                setWeatherCode(data.daily.weather_code[4]);
-              //}
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        if (
+          data.current_weather &&
+          data.current_weather.temperature !== undefined
+        ) {
+          setTemperature(data.current_weather.temperature);
+        } else {
+          setError("Unable to fetch temperature data");
+        }
 
-            })
-            .catch(() => setError('Failed to fetch data from the weather API'));
-        },
-        () => setError('Location access denied by the user')
-      );
-    } else {
-      setError('Geolocation is not supported by this browser');
-    }
+        //if (data.current && data.current_weather.weather_code !== undefined) {
+        setWeatherCode(data.daily.weather_code[0]);
+        //}
+      })
+      .catch(() => setError("Failed to fetch data from the weather API"));
   }, []);
 
   const WeatherIcon = () => {
-    const commonProps = { x: 75, y: 50, width: 50, height: 50, fill: "white",};
+    const commonProps = { x: 75, y: 50, width: 50, height: 50, fill: "white" };
 
-    switch (weatherCode){ // https://open-meteo.com/en/docs
+    switch (
+      weatherCode // https://open-meteo.com/en/docs
+    ) {
       case 0:
-        return <Sun {...commonProps}/> // Clear Sky
+        return <Sun {...commonProps} />; // Clear Sky
       case 1:
       case 2:
       case 3:
-        return <Cloudy {...commonProps} /> // Partly Cloudy
+        return <Cloudy {...commonProps} />; // Partly Cloudy
       case 45:
       case 48:
-        return <Fog {...commonProps} /> // Fog
+        return <Fog {...commonProps} />; // Fog
       case 51:
       case 53:
       case 55:
-        return <Drizzle {...commonProps} /> // Light Rain
+        return <Drizzle {...commonProps} />; // Light Rain
       case 56:
       case 57:
-        return <Hail {...commonProps} /> // Freezing Drizzle
+        return <Hail {...commonProps} />; // Freezing Drizzle
       case 61:
       case 63:
       case 65:
-        return <Rain {...commonProps} /> // Rain
+        return <Rain {...commonProps} />; // Rain
       case 71:
       case 73:
       case 75:
-        return <Snow {...commonProps}  /> // Snow
+        return <Snow {...commonProps} />; // Snow
       case 77:
-        return <Snow {...commonProps}  /> // Snow Grains
+        return <Snow {...commonProps} />; // Snow Grains
       case 80:
       case 81:
       case 82:
-        return <HeavyRain {...commonProps} /> // Rain Showers
+        return <HeavyRain {...commonProps} />; // Rain Showers
       case 85:
       case 86:
-        return <Snow {...commonProps}  /> // Snow Heavy
+        return <Snow {...commonProps} />; // Snow Heavy
       case 95:
       case 96:
       case 99:
-        return <Thunder {...commonProps} /> // Thunderstorm
+        return <Thunder {...commonProps} />; // Thunderstorm
       default:
-        return "Err"
+        return "Err";
     }
-  }
-
+  };
 
   return (
     <div className="temperature-visualization">
       {error ? (
-        <p style={{ color: 'red' }}>{error}</p>
+        <p style={{ color: "red" }}>{error}</p>
       ) : (
         <div>
           {/* Current Time Display */}
-          <h2 style={{ color: 'white', marginBottom: '20px' }}>{currentTime}</h2>
-          
+          <h2 style={{ color: "white", marginBottom: "20px" }}>
+            {currentTime}
+          </h2>
+
           {/* Temperature Visualization */}
           {temperature !== null ? (
             <svg width="200" height="200">
@@ -147,7 +148,7 @@ const TemperatureWidget = () => {
               <WeatherIcon />
             </svg>
           ) : (
-            <p style={{ color: 'white' }}>Loading temperature...</p>
+            <p style={{ color: "white" }}>Loading temperature...</p>
           )}
         </div>
       )}

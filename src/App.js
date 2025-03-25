@@ -11,7 +11,10 @@ import Stopwatch from "./Stopwatch";
 import "./App.css";
 
 function App() {
-  const [counter, setCounter] = useState(0);
+  const [temp, setTemp] = useState(0);
+  const [leftRPM, setLeftRPM] = useState(0);
+  const [rightRPM, setRightRPM] = useState(0);
+  const [batteryVolt, setBatteryVolt] = useState(0);
 
   useEffect(() => {
     const ws = new ReconnectingWebSocket("ws://localhost:3000");
@@ -21,8 +24,12 @@ function App() {
     };
 
     ws.onmessage = (message) => {
+      console.log("Received:", message.data);
       const data = JSON.parse(message.data);
-      setCounter(data.counter); // Ensure `data.counter` matches your data format
+      setTemp(data.temp);
+      setLeftRPM(data.leftRPM);
+      setRightRPM(data.rightRPM);
+      setBatteryVolt(data.batteryVolt);
     };
 
     ws.onerror = (error) => {
@@ -40,22 +47,10 @@ function App() {
         <div className="app-content">
           {/* <Counter counter={counter} /> */}
           <Temperature />
-          <Battery counter={counter} maxValue={100} />
+          <Battery volt={batteryVolt} maxValue={100} />
           <DaqConnection />
-          <Thermo counter={counter} maxValue={100}></Thermo>
-          <div style={{ minWidth: "300px" }}>
-            <Speedometer counter={counter} maxValue={100} />
-            <Counter counter={counter} />
-            <h6
-              style={{
-                marginTop: "0px",
-                marginBottom: "150px",
-                lineHeight: "2px",
-              }}
-            >
-              mph
-            </h6>
-          </div>
+          <Thermo temp={temp} maxValue={100}></Thermo>
+          <Speedometer leftRPM={leftRPM} rightRPM={rightRPM} maxValue={100} />
           <Stopwatch />
           <Maps />
         </div>

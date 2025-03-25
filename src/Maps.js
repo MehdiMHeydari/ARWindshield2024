@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { APIProvider, Map, Marker } from "@vis.gl/react-google-maps";
 import TrackOverlay from "./Indianapolis_Oval.png";
 
-const API_KEY = "";
+const API_KEY = "AIzaSyBgPYMQva_jXuYQrjE6ngj4LxYtWPeC3I8";
 
 const Maps = () => {
   const [currentLocation, setCurrentLocation] = useState(null);
@@ -64,15 +64,16 @@ const Maps = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        maxHeight: "500px",
+        maxHeight: "550px",
         minWidth: "270px",
         position: "relative",
         marginTop: "-20px", // Moves the widget UP
-        marginLeft: "150px", // Moves the widget RIGHT
+        marginLeft: "140px", // Moves the widget RIGHT
         transform: "rotate(270deg)",
         transformOrigin: "50% 50%",
         overflow: "hidden",
         boxSizing: "border-box",
+        paddingBottom: "50px",
       }}
     >
       <APIProvider apiKey={API_KEY}>
@@ -114,6 +115,7 @@ const Maps = () => {
           maxWidth: "260px",
           opacity: 0.7,
           pointerEvents: "none",
+          paddingBottom: "50px",
         }}
       />
     </div>
