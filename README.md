@@ -2,7 +2,7 @@
 
 ## Team Members
 
-Mehdi Heydari & Amelia Zhang
+Mehdi Heydari, Ajay Parthibha, Amelia Zhang
 
 ## Summary
 
